@@ -1,6 +1,12 @@
 <?php
 
 return array(
+    
+        /*
+         * users roles
+         */
+         'Authority\AuthorityL4\AuthorityL4ServiceProvider',
+         'Authority' => 'Authority\AuthorityL4\Facades\Authority',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -13,7 +19,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
