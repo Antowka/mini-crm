@@ -25,6 +25,12 @@ angular.module('companyCtrl', ['ngTable']).controller('companyController', funct
 				
 			});
 		};
+
+		$scope.removeCompany = function(company_id){
+			Company.removeCompany(company_id).success(function(data) {
+				console.log(data);
+			});
+		};
 		
 		$scope.updateCompanyList();
 

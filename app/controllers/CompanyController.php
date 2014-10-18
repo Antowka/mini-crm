@@ -16,6 +16,10 @@
 	    	return Response::json($listClientsCompany);
 	    }
 
+	    public function postRemove(){
+	    	return Response::json(array('test1', 'test2'));
+	    }
+
 	    public function getOurdeps(){
 	    	 $depsOurCompany = array(
 	    	 	array(

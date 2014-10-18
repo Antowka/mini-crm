@@ -188,6 +188,7 @@
 			        <td data-title="'Name'"><%company.name%></td>
 			        <td data-title="'Email'"><%company.email%></td>
 			        <td data-title="'Description'"><%company.description%></td>
+			        <td data-title="'Close'"><span class="glyphicon glyphicon-remove-circle" ng-click="removeCompany(company.id);"></span></td>
 			    </tr>
 			</table>
 			
