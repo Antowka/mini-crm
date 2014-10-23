@@ -17,7 +17,8 @@
 	    }
 
 	    public function postRemove(){
-	    	return Response::json(array('test1', 'test2'));
+	    	$this->CompaniesUserModel->find(Input::get('id'))->delete();
+	    	return Response::json(array('status'=>'removed'));
 	    }
 
 	    public function getOurdeps(){
