@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder{
         
         $this->call('UserRolesSeeder');
         $this->command->info('User Roles relative table seeded!');
+
+        $this->call('TasksSeeder');
+        $this->command->info('Tasks relative table seeded!');
         
     }
 }
@@ -146,15 +149,32 @@ class DepartmentsInCompanyTableSeeder extends Seeder{
     }
 }
     
-    class UserRolesSeeder extends Seeder{
-    	public function run() {
-    		DB::table('users_roles')->delete();
-    		$UserRole = array(
-    				array(
-    						'user_id' =>1,
-    						'role_id' => 1,
-    				),
-    		);
-    		DB::table('users_roles')->insert($UserRole);
-    	}
+class UserRolesSeeder extends Seeder{
+	public function run() {
+		DB::table('users_roles')->delete();
+		$UserRole = array(
+				array(
+					'user_id' =>1,
+					'role_id' => 1,
+				),
+		);
+		DB::table('users_roles')->insert($UserRole);
+    }
+}
+
+class TasksSeeder extends Seeder{
+    public function run() {
+        DB::table('tasks')->delete();
+        $tasks = array(
+                array(
+                    'id' =>1,
+                    'company_id'=>1,
+                    'project_id'=>1,
+                    'name'=>'First Task',
+                    'description'=>'test task, test task, test task, test task, test task,',
+                    'status_id'=>1,
+                ),
+        );
+        DB::table('tasks')->insert($tasks);
+    }
 }

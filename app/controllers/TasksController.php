@@ -18,29 +18,8 @@ class TasksController extends BaseController{
      * Show lines with Accruals
      */
     public function getShow() {
-
-        $dateRange = array(
-            'startDate' => date("Y-m-d H:i:s", time()-86400),
-            'stopDate'  => date("Y-m-d H:i:s", time()),
-        );
-
-        $showAccrualsList = array(
-            array(
-                'id'=>1,
-                'date' => date("Y-m-d H:i:s", time()-86400),
-                'description' => "Test description on accruals",
-                'amoubt' => 150,
-                'type' => 'z.p',
-            ),
-            array(
-                'id'=>2,
-                'date' => date("Y-m-d H:i:s", time()),
-                'description' => "Test description on accruals 2",
-                'amoubt' => 180,
-                'type' => 'z.p',
-            ),
-        );
-        return Response::json($showAccrualsList);
+        $task = new Task();
+        return Response::json($task->all());
     }
 
     /*

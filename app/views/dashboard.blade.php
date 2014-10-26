@@ -17,7 +17,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      
 	      <ul class="nav navbar-nav">
-	        <li><a href="#" ng-click="layout='addTask'">Add Task</a></li>
+	        <li ng-click="layout='Tasks'"><a href="#" ng-controller="tasksController" ng-click="updateTasksList()">Tasks</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
@@ -54,7 +54,7 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	<div class="container" ng-controller="tasksController">
+	<div class="container">
 		<!-- Home Page -->
 		<div ng-show="layout=='home'" class="col-md-8 col-md-offset-2">
 			<h2>Accounting System</h2>
@@ -72,7 +72,7 @@
 		</div>
 
 		<!-- Add Task -->
-		<div ng-show="layout=='addTask'" class="col-md-8 col-md-offset-2">
+		<div  ng-controller="tasksController" ng-show="layout=='Tasks'" class="col-md-8 col-md-offset-2">
 			<h2>New Task</h2>
 			<form ng-submit="addTask()">
 				
@@ -103,6 +103,23 @@
 				</div>
 
 			</form>
+
+
+			<hr>
+			
+			<h3>Tasks List</h3>
+			<p><strong>Page:</strong> <%tableParams.page()%></p>
+        	<p><strong>Count per page:</strong> <%tableParams.count()%></p>
+			<table ng-table="tableParams" class="table">
+				<tr ng-repeat="task in $data">
+					<td data-title="'#'"><%task.id%></td>
+			        <td data-title="'Name'"><%task.name%></td>
+			        <td data-title="'Description'"><%task.description%></td>
+			        <td data-title="'Close'"><span class="glyphicon glyphicon-remove-circle" ng-click="removeCompany(task.id);"></span></td>
+			    </tr>
+			</table>
+
+
 			<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
 		</div>
 
