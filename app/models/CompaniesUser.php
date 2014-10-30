@@ -9,6 +9,10 @@ class CompaniesUser extends Eloquent{
 		return $this->belongsToMany('Company', 'user_companies', 'user_id');
 	}
 
+	public function departmentsInComapnyByUser(){
+		return $this->belongsToMany('CompanyDepartments', 'user_companies', 'user_id', 'company_id');
+	}
+
 	//For Remove Company
 	public function company(){
 		return $this->belongsToMany('Company', 'user_companies', 'company_id');

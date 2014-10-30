@@ -30,7 +30,12 @@ class DatabaseSeeder extends Seeder{
 
         $this->call('TasksSeeder');
         $this->command->info('Tasks relative table seeded!');
-        
+
+        $this->call('UserTasksSeeder');
+        $this->command->info('User Tasks relative table seeded!');
+
+        $this->call('UserTasksStatusSeeder');
+        $this->command->info('User Tasks Status relative table seeded!');        
     }
 }
  
@@ -40,6 +45,12 @@ class UserTableSeeder extends Seeder{
         User::create(array(
             'login'    => '662307@gmail.com',
             'name'     => 'Anton Nikanorov',
+            'password' => Hash::make('la136dop'),
+            'remember_token' => ''
+        ));
+        User::create(array(
+            'login'    => 'vasya@mail.com',
+            'name'     => 'Vasya Pupkin',
             'password' => Hash::make('la136dop'),
             'remember_token' => ''
         ));
@@ -95,9 +106,16 @@ class UserCompaniesTableSeeder extends Seeder{
             array(
                 'user_id'    => 1,
                 'company_id' => 1,
-            	'profession' => 'coder',
+            	'profession' => 'Manger',
                 'departments_id' => 1,
-                'status_in_company_id' => 1,
+                'status_in_company_id' => 2,
+            ),
+            array(
+                'user_id'    => 2,
+                'company_id' => 1,
+                'profession' => 'Coder',
+                'departments_id' => 1,
+                'status_in_company_id' => 3,
             ),
         );
         DB::table('user_companies')->insert($UserCompanies);
@@ -157,6 +175,10 @@ class UserRolesSeeder extends Seeder{
 					'user_id' =>1,
 					'role_id' => 1,
 				),
+                array(
+                    'user_id' =>2,
+                    'role_id' => 2,
+                ),
 		);
 		DB::table('users_roles')->insert($UserRole);
     }
@@ -176,5 +198,41 @@ class TasksSeeder extends Seeder{
                 ),
         );
         DB::table('tasks')->insert($tasks);
+    }
+}
+
+class UserTasksSeeder extends Seeder{
+    public function run() {
+        DB::table('user_tasks')->delete();
+        $tasks = array(
+                array(
+                    'id' =>1,
+                    'user_id'=>2,
+                    'task_id'=>1,
+                    'status_id'=>1,
+                ),
+        );
+        DB::table('user_tasks')->insert($tasks);
+    }
+}
+
+class UserTasksStatusSeeder extends Seeder{
+    public function run() {
+        DB::table('user_tasks_status')->delete();
+        $tasks = array(
+                array(
+                    'id' =>1,
+                    'status_name'=>'Исполнитель',
+                ),
+                array(
+                    'id' =>2,
+                    'status_name'=>'Наблюдатель',
+                ),
+                array(
+                    'id' =>3,
+                    'status_name'=>'Руководитель',
+                ),
+        );
+        DB::table('user_tasks_status')->insert($tasks);
     }
 }

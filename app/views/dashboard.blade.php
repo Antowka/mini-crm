@@ -78,13 +78,15 @@
 				
 				<div class="company-fields" ng-controller="companyController">
 					<div class="form-group">
-						<select name="company">
+						<label for="task-client-selector">Client</label>
+						<select id="task-client-selector" name="company">
 							<option ng-repeat="company in companies" value="<%company.id%>"><%company.name%></option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<select name="ourdeps">
+						<label for="task-department-selector">Department</label>
+						<select id="task-department-selector" name="ourdeps">
 							<option ng-repeat="ourdep in ourdeps" value="<%ourdep.id%>"><%ourdep.name%></option>
 						</select>
 					</div>
